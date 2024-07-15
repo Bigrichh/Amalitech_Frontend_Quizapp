@@ -1,6 +1,6 @@
 import { styled } from "@vvibe/vue-styled-components";
 
-
+// Styled component for the main screen container
 export const screen = styled("div")`
   display: flex;
   position:relative;
@@ -13,6 +13,7 @@ export const screen = styled("div")`
   overflow:hidden;
 `;
 
+// Styled component for the large top outer circle background
 export const outertopcircle = styled("div")`
   border-radius:100%;
   background-color:#EDF1F9;
@@ -27,6 +28,7 @@ export const outertopcircle = styled("div")`
   z-index:0;
   `;
 
+// Styled component for the large bottom circle background
 export const outerbottomcircle = styled("div")`
   border-radius:100%;
   background-color:#EDF1F9;
@@ -41,6 +43,7 @@ export const outerbottomcircle = styled("div")`
   z-index:0;
   `;
 
+// Styled component for the inner circle background
 export const innercircle = styled("div")`
   border-radius:100%;
   background-color:#f4f6fa;
@@ -48,6 +51,7 @@ export const innercircle = styled("div")`
   height:750px;
   `;
 
+// Styled component for the outer container holding other components
 export const outercontainer = styled("div")`
   z-index: 10; 
   display: flex; 
@@ -56,6 +60,7 @@ export const outercontainer = styled("div")`
   align-items: end;
 `;
 
+// Styled component for the inner container 
 export const innercontainer = styled("div")`
   display: flex;
   flex-direction: row;
@@ -66,6 +71,7 @@ export const innercontainer = styled("div")`
   z-index:1;
 `;
 
+// Styled component for the header container with text elements
 export const headercontainer = styled("div")`
  display:flex;
  flex-direction:column;
@@ -74,11 +80,13 @@ export const headercontainer = styled("div")`
  color:#313E51;
  `;
 
+// Styled component for the header's main title
 export const headercontainerh1 = styled("h1")`
  font-size:64px;
  font-weight: 300;
  `;
 
+// Styled component for the header's paragraph text
 export const headercontainerp = styled("p")`
  font-size:20px;
  font-family:"Rubik";
@@ -86,10 +94,12 @@ export const headercontainerp = styled("p")`
  color:#626C7F;
  `;
 
+// Styled component for the header's span text
 export const headercontainerspan = styled("span")`
  font-weight: 500;
 `;
 
+// Styled component for the card container holding interactive cards
 export const cardcontainer = styled("div")`
   display: flex;
   flex-direction: column;
@@ -98,6 +108,7 @@ export const cardcontainer = styled("div")`
   justify-content: center;
 `;
 
+// Styled component for an individual card
 export const card = styled("div")`
   display: flex;
   color:#313E51;
@@ -114,6 +125,7 @@ export const card = styled("div")`
     
 `;
 
+// Styled component for the icon container within a card
 export const icondiv = styled("div")`
   background-color:#F4F6FA;
   width:56px;
@@ -128,6 +140,8 @@ export const icondiv = styled("div")`
   font-weight: 500;
   `;
 
+
+// Styled component for the text within a card
 export const cardtext = styled("p")`
  font-size:26px;
  font-weight: 500;
@@ -136,25 +150,29 @@ export const cardtext = styled("p")`
 
 `;
 
-export const titletogglecontainer =styled("div")`
+// Styled component for a container with title and toggle components
+export const titletogglecontainer = styled("div")`
   display: flex; 
   width: 100%; 
   justify-content: space-between;
 `;
 
-export const titlediv =styled("div")`
+// Styled component for a container with title
+export const titlediv = styled("div")`
   display:flex;
   align-items:center;
   gap:24px;
 `;
 
-export const question =styled("p")`
+// Styled component for a question text
+export const question = styled("p")`
   font-size:36px;
   color:#313E51;
   font-weight:500;
   `;
-  
-  export const styledbutton = styled("button")`
+
+// Styled component for a custom-styled button
+export const styledbutton = styled("button")`
   width:100%;
   border-radius: 24px;
   padding: 32px;
@@ -172,28 +190,40 @@ export const question =styled("p")`
   }
 `;
 
-export const QuestionCard = styled(card)`
-  width: 500px;
+// Styled component for an error message text
+export const errormessage = styled("span")`
+  color:#EE5454; 
+  font-weight: normal; 
+  font-size: 24px; 
+  display: flex; 
+  align-items: center;
 `;
 
-export const choice = styled("li") <{ selected: boolean }>`
-  background-color: ${(props) => (props.selected ? "#d1c4e9" : "#ffffff")};
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  &:hover {
-    background-color: #f1f1f1;
-  }
+// Styled component for score card container
+export const scorecard = styled("div")`
+  width: 600px; 
+  height: 400px; 
+  padding: 48px; 
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: white; 
+  border-radius: 24px;  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export const ErrorMessage = styled("p")`
-  color: red;
-  margin-top: 10px;
+// Styled component for a score text
+export const score = styled("p")`
+  font-size: 144px; 
+  font-weight: 500; 
+  color:#313E51;
 `;
 
-export const AnswerResult = styled("div") <{ correct: boolean }>`
-  color: ${(props) => (props.correct ? "green" : "red")};
-  margin-top: 20px;
+// Styled component for a score container
+export const scorediv = styled("div")`
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+  align-items: center;
 `;
