@@ -1,6 +1,5 @@
 <template>
-    <!-- Quiz screen which displays when showScore is false -->
-    <screen v-show="!showScore">
+    <screen>
         <!-- Top circle decoration -->
         <outertopcircle>
             <innercircle>
@@ -13,8 +12,8 @@
                 <titlediv>
                     <!-- Icon for the subject with dynamic background color -->
                     <icondiv :style="{ 'backgroundColor': currentSubject.iconbg }">
-                        <img style="width: 40px; height:40px" :src="getImageUrl(currentSubject.icon)"
-                            alt="subject-icon">
+                        <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                            :src="getImageUrl(currentSubject.icon)" alt="subject-icon">
                     </icondiv>
                     <!-- Text displaying current subject title -->
                     <cardtext>{{ currentSubject.title }}</cardtext>
@@ -22,7 +21,7 @@
                 <Toggle></Toggle><!-- Toggle component for light/dark mode -->
             </titletogglecontainer>
 
-            <innercontainer><!-- Inner container for main content -->
+            <innercontainer v-show="!showScore"><!-- Inner container for Questions and mcqs which displays when showScore is false-->
 
                 <headercontainer><!-- Header container with current question number and current question -->
                     <!-- Paragraph displaying current question number -->
@@ -35,8 +34,8 @@
                 <!-- Container for displaying options -->
                 <cardcontainer>
                     <!-- Label and card for each option -->
-                    <label v-for="(option, index) in currentSubject.questions[currentQuestionIndex].options"
-                        :key="index">
+                    <label style="width: 100%;"
+                        v-for="(option, index) in currentSubject.questions[currentQuestionIndex].options" :key="index">
                         <card :class="[
                             { 'selected': selectedOption === option },
                             { 'correct-option': isOptionCorrect(option) },
@@ -56,11 +55,12 @@
                             <!-- Container for correct or incorrect icons -->
                             <div style="display: flex; margin-left: auto;">
                                 <icondiv v-if="isOptionCorrect(option)" style="background-color: transparent;">
-                                    <img style="width: 40px; height:40px" :src="getImageUrl('icon-correct.svg')" alt="">
+                                    <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                                        :src="getImageUrl('icon-correct.svg')" alt="">
                                 </icondiv>
                                 <icondiv v-if="isOptionIncorrect(option)" style="background-color: transparent;">
-                                    <img style="width: 40px; height:40px" :src="getImageUrl('icon-incorrect.svg')"
-                                        alt="">
+                                    <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                                        :src="getImageUrl('icon-incorrect.svg')" alt="">
                                 </icondiv>
                             </div>
                         </card>
@@ -72,7 +72,8 @@
                     <styledbutton v-show="showScoreBtn" @click="showQuizScore">Show score</styledbutton>
                     <!-- Error message display -->
                     <errormessage v-show="error">
-                        <img style="width: 40px; height:40px" :src="getImageUrl('icon-incorrect.svg')" alt="error-icon">
+                        <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                            :src="getImageUrl('icon-incorrect.svg')" alt="error-icon">
                         {{ errorMsg }}
                     </errormessage>
 
@@ -80,39 +81,7 @@
 
             </innercontainer>
 
-        </outercontainer>
-
-        <!-- Bottom circle decoration -->
-        <outerbottomcircle>
-            <innercircle>
-            </innercircle>
-        </outerbottomcircle>
-    </screen>
-
-    <!-- Score screen which displays when showScore is true -->
-    <screen v-show="showScore">
-        <!-- Top circle decoration -->
-        <outertopcircle>
-            <innercircle>
-            </innercircle>
-        </outertopcircle>
-
-        <outercontainer><!-- Outer container for content -->
-            <!-- Container for title and toggle component -->
-            <titletogglecontainer>
-                <titlediv>
-                    <!-- Icon for the subject with dynamic background color -->
-                    <icondiv :style="{ 'backgroundColor': currentSubject.iconbg }">
-                        <img style="width: 40px; height:40px" :src="getImageUrl(currentSubject.icon)"
-                            alt="subject-icon">
-                    </icondiv>
-                    <!-- Text displaying current subject title -->
-                    <cardtext>{{ currentSubject.title }}</cardtext>
-                </titlediv>
-                <Toggle></Toggle><!-- Toggle component for light/dark mode -->
-            </titletogglecontainer>
-
-            <innercontainer><!-- Inner container for main content -->
+            <innercontainer v-show="showScore"><!-- Inner container for scores which displays when showScore is true-->
                 <headercontainer><!-- Header container with title -->
                     <headercontainerh1>Quiz Completed <headercontainerspan>You scored...</headercontainerspan>
                     </headercontainerh1>
@@ -157,8 +126,6 @@
             </innercircle>
         </outerbottomcircle>
     </screen>
-
-
 </template>
 
 

@@ -23,12 +23,12 @@
         <!-- Container for quiz subject cards -->
         <cardcontainer>
           <!-- Loop through each subject and create a router link -->
-          <router-link v-for="subject in subjects" :to="{ name: 'quiz', params: { title: subject.title } }">
+          <router-link style="width: 100%;" v-for="subject in subjects" :to="{ name: 'quiz', params: { title: subject.title } }">
             <!-- Card component for each subject -->
             <card>
               <!-- Icon for the subject with dynamic background color -->
               <icondiv :style="{ 'backgroundColor': subject.iconbg }">
-                <img style="width: 40px; height:40px" :src="getImageUrl(subject.icon)" alt="icon-image">
+                <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}" :src="getImageUrl(subject.icon)" alt="icon-image">
               </icondiv>
               <!-- Subject title text -->
               <cardtext>{{ subject.title }}</cardtext>

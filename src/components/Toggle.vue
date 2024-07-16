@@ -1,39 +1,55 @@
 <template>
     <div class="container">
-          <img src="../assets/images/icon-sun-dark.svg" alt="">
-          <div class="toggle-container">
+        <img src="../assets/images/icon-sun-dark.svg" alt="">
+        <div class="toggle-container">
             <input type="checkbox" id="toggle" class="toggle-input">
             <label for="toggle" class="toggle-label"></label>
-          </div>
-          <img src="../assets/images/icon-moon-dark.svg" alt="">
         </div>
+        <img src="../assets/images/icon-moon-dark.svg" alt="">
+    </div>
 </template>
 
 
 <script lang="ts">
 export default {
- name:'Toggle',
+    name: 'Toggle',
 }
 </script>
 
 <style scoped>
-.container{
+.container {
     display: flex;
     align-items: center;
     width: fit-content;
-    gap:16px;
-    /* position: absolute; */
+    gap: 8px;
+    z-index: 20;
+    
+    
+    /* Medium screens (md): 768px */
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        gap: 16px;
+    }
 }
 
-img{
-    width:24px;
-    height:24px;
+img {
+    width: 20px;
+    height: 20px;
+    
+    /* Medium screens (md): 768px */
+    @media (min-width: 768px) {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .toggle-container {
     position: relative;
     width: 48px;
-    height: 28px;
+    height: 24px;
+    z-index: 20;
 }
 
 .toggle-input {
@@ -59,11 +75,16 @@ img{
     position: absolute;
     left: 4px;
     top: 4px;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-color: white;
     border-radius: 50%;
     transition: transform 0.3s;
+
+    @media (min-width: 768px) {
+        width: 22px;
+        height: 22px;
+    }
 }
 
 .toggle-input:checked+.toggle-label {
@@ -71,6 +92,6 @@ img{
 }
 
 .toggle-input:checked+.toggle-label::before {
-    transform: translateX(20px);
+    transform: translateX(24px);
 }
 </style>
