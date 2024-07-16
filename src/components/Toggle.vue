@@ -1,18 +1,50 @@
 <template>
     <div class="container">
-        <img src="../assets/images/icon-sun-dark.svg" alt="">
+        <img :src="getImageUrl(sunImageSrc)" alt="">
         <div class="toggle-container">
-            <input type="checkbox" id="toggle" class="toggle-input">
+            <input type="checkbox" id="toggle" class="toggle-input" v-model="isToggled">
             <label for="toggle" class="toggle-label"></label>
         </div>
-        <img src="../assets/images/icon-moon-dark.svg" alt="">
+        <img :src="getImageUrl(moonImageSrc)" alt="">
     </div>
 </template>
 
 
 <script lang="ts">
+
+// Import the quiz store to access quiz data
+import { useQuizStore } from '../stores/quizstore';
+
 export default {
     name: 'Toggle',
+    data() {
+        return {
+            quizStore: useQuizStore(),
+        };
+    },
+    computed: {
+        isToggled: {
+            get() {
+                return this.quizStore.toggled;
+            },
+            set() {
+                this.quizStore.toggleTheme();
+            },
+        },
+
+        moonImageSrc(): string {
+            return this.isToggled ? 'icon-moon-light.svg' : 'icon-moon-dark.svg';
+        },
+        sunImageSrc(): string {
+            return this.isToggled ? 'icon-sun-light.svg' : 'icon-sun-dark.svg';
+        },
+    },
+
+    methods: {
+        getImageUrl(name: string): string {
+            return new URL(`../assets/images/${name}`, import.meta.url).href;
+        }
+    },
 }
 </script>
 
@@ -23,8 +55,8 @@ export default {
     width: fit-content;
     gap: 8px;
     z-index: 20;
-    
-    
+
+
     /* Medium screens (md): 768px */
     @media (min-width: 768px) {
         display: flex;
@@ -37,7 +69,7 @@ export default {
 img {
     width: 20px;
     height: 20px;
-    
+
     /* Medium screens (md): 768px */
     @media (min-width: 768px) {
         width: 24px;

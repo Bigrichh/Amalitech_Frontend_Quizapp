@@ -1,5 +1,5 @@
 <template>
-    <screen>
+    <screen :class="theme">
         <!-- Top circle decoration -->
         <outertopcircle>
             <innercircle>
@@ -21,7 +21,8 @@
                 <Toggle></Toggle><!-- Toggle component for light/dark mode -->
             </titletogglecontainer>
 
-            <innercontainer v-show="!showScore"><!-- Inner container for Questions and mcqs which displays when showScore is false-->
+            <innercontainer v-show="!showScore">
+                <!-- Inner container for Questions and mcqs which displays when showScore is false-->
 
                 <headercontainer><!-- Header container with current question number and current question -->
                     <!-- Paragraph displaying current question number -->
@@ -164,7 +165,8 @@ export default {
             showIncorrectIcons: false,  // Controls the display of incorrect answer icons
             isSubmitted: false, // Flag to track if the answer has been submitted
             score: 0, // Tracks the user's score
-            showScore: false, // Controls the display of the quiz & score screen
+            showScore: true, // Controls the display of the quiz & score screen
+            theme: ""
 
         }
     },
@@ -177,6 +179,13 @@ export default {
         if (subject) {
             this.currentSubject = subject; // Set the current subject if found
         }
+
+        this.theme = quizStore.theme
+
+        // Watch for changes in the store's theme and update the local theme
+        quizStore.$subscribe((mutation, state) => {
+            this.theme = state.theme;
+        });
     },
 
     // Methods for handling component logic

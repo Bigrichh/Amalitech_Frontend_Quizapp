@@ -8,7 +8,7 @@ export const screen = styled("div")`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: #f4f6fa;
+  background-color: var(--bg-color);
   font-family: "Rubik";
   overflow: hidden;
   padding: 24px;
@@ -18,7 +18,7 @@ export const screen = styled("div")`
 // Styled component for the large top outer circle background
 export const outertopcircle = styled("div")`
   border-radius: 100%;
-  background-color: #edf1f9;
+  background-color: var(--outercirclebg-color);
   width: 1000px;
   height: 1000px;
   position: absolute;
@@ -57,7 +57,7 @@ export const outertopcircle = styled("div")`
 // Styled component for the large bottom circle background
 export const outerbottomcircle = styled("div")`
   border-radius: 100%;
-  background-color: #edf1f9;
+  background-color: var(--outercirclebg-color);
   width: 1000px;
   height: 1000px;
   position: absolute;
@@ -96,7 +96,7 @@ export const outerbottomcircle = styled("div")`
 // Styled component for the inner circle background
 export const innercircle = styled("div")`
   border-radius: 100%;
-  background-color: #f4f6fa;
+  background-color: var(--bg-color);
   width: 750px;
   height: 750px;
 `;
@@ -153,7 +153,7 @@ export const headercontainer = styled("div")`
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  color: #313e51;
+  color: var(--text-color);
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
@@ -188,7 +188,7 @@ export const headercontainerp = styled("p")`
   font-size: 18px;
   font-family: "Rubik";
   font-style: italic;
-  color: #626c7f;
+  color: var(--headerp-color);
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
@@ -231,10 +231,10 @@ export const cardcontainer = styled("div")`
 // Styled component for an individual card
 export const card = styled("div")`
   display: flex;
-  color: #313e51;
+  color: var(--text-color);
   align-items: center;
   justify-content: start;
-  background-color: #ffffff;
+  background-color: var(--cardbg-color);
   border-radius: 12px;
   gap: 24px;
   padding: 12px;
@@ -306,8 +306,8 @@ export const icondiv = styled("div")`
 export const cardtext = styled("p")`
   font-size: 16px;
   font-weight: 500;
-  color: #313e51;
   text-align: left;
+  color: var(--text-color);
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
@@ -342,7 +342,7 @@ export const titlediv = styled("div")`
 // Styled component for a question text
 export const question = styled("p")`
   font-size: 22px;
-  color: #313e51;
+  color: var(--text-color);
   font-weight: 500;
 
   /* Medium screens (md): 768px */
@@ -395,7 +395,7 @@ export const styledbutton = styled("button")`
 
 // Styled component for an error message text
 export const errormessage = styled("span")`
-  color: #ee5454;
+  color: var(--errortext-color);
   font-weight: normal;
   font-size: 16px;
   display: flex;
@@ -427,7 +427,7 @@ export const scorecard = styled("div")`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: var(--scorecardbg-color);
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
@@ -456,7 +456,7 @@ export const scorecard = styled("div")`
 export const score = styled("p")`
   font-size: 100px;
   font-weight: 500;
-  color: #313e51;
+  color: var(--text-color);
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
