@@ -29,7 +29,7 @@
             <card>
               <!-- Icon for the subject with dynamic background color -->
               <icondiv :style="{ 'backgroundColor': subject.iconbg }">
-                <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                <img style="width: 28px; height:28px; @media (min-width: 768px) {width: 40px; height:40px;}"
                   :src="getImageUrl(subject.icon)" alt="icon-image">
               </icondiv>
               <!-- Subject title text -->
@@ -84,10 +84,9 @@ export default {
   created() {
     const quizStore = useQuizStore();  // Access the quiz store
     this.theme = quizStore.theme
-
     // Watch for changes in the store's theme and update the local theme
-    quizStore.$subscribe((mutation, state) => {
-      this.theme = state.theme;
+    this.$watch(() => quizStore.theme, (newTheme) => {
+      this.theme = newTheme;
     });
   },
 

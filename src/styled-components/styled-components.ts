@@ -12,7 +12,6 @@ export const screen = styled("div")`
   font-family: "Rubik";
   overflow: hidden;
   padding: 24px;
-
 `;
 
 // Styled component for the large top outer circle background
@@ -31,13 +30,13 @@ export const outertopcircle = styled("div")`
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
- left: -75%;
+    left: -75%;
     top: -50%;
   }
 
   /* Large screens (lg): 1024px */
   @media (min-width: 1024px) {
-   left: -55%;
+    left: -55%;
     top: -95%;
   }
 
@@ -67,17 +66,17 @@ export const outerbottomcircle = styled("div")`
   top: 4000%;
   right: -2500%;
   z-index: 0;
-  
+
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
     top: 50%;
     right: -75%;
-    }
-    
-    /* Large screens (lg): 1024px */
-    @media (min-width: 1024px) {
-      top: 50%;
-      right: -45%;
+  }
+
+  /* Large screens (lg): 1024px */
+  @media (min-width: 1024px) {
+    top: 50%;
+    right: -45%;
   }
 
   /* Extra large screens (xl): 1280px */
@@ -110,9 +109,14 @@ export const outercontainer = styled("div")`
   align-items: end;
   width: 100%;
 
-  /* Medium screens (md): 768px */
-  @media (min-width: 768px) {
-    width: fit-content;
+  /* Large screens (lg): 1024px */
+  @media (min-width: 1024px) {
+    width: 1000px;
+  }
+
+  /* Extra large screens (xl): 1280px */
+  @media (min-width: 1280px) {
+    width: 1160px;
   }
 `;
 
@@ -129,12 +133,12 @@ export const innercontainer = styled("div")`
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
     align-items: start;
-    width: fit-content;
     gap: 48px;
   }
 
   /* Large screens (lg): 1024px */
   @media (min-width: 1024px) {
+    width: fit-content;
     flex-direction: row;
     width: 1000px;
   }
@@ -154,11 +158,6 @@ export const headercontainer = styled("div")`
   gap: 16px;
   width: 100%;
   color: var(--text-color);
-
-  /* Medium screens (md): 768px */
-  @media (min-width: 768px) {
-    width: 465px;
-  }
 
   /* Extra large screens (xl): 1280px */
   @media (min-width: 1280px) {
@@ -214,11 +213,12 @@ export const cardcontainer = styled("div")`
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
     gap: 24px;
-    width: fit-content;
+    width: 100%;
   }
 
   /* Large screens (lg): 1024px */
   @media (min-width: 1024px) {
+    width: fit-content;
     gap: 18px;
   }
 
@@ -245,7 +245,6 @@ export const card = styled("div")`
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
-    width: 564px;
     padding: 20px;
     border-radius: 24px;
   }
@@ -275,7 +274,7 @@ export const icondiv = styled("div")`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: F4F6FA;
   color: #626c7f;
   font-size: 20px;
@@ -283,6 +282,7 @@ export const icondiv = styled("div")`
 
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
+    border-radius: 8px;
     width: 40px;
     height: 40px;
     font-size: 24px;
@@ -434,9 +434,13 @@ export const scorecard = styled("div")`
   /* Medium screens (md): 768px */
   @media (min-width: 768px) {
     border-radius: 24px;
-    width: 550px;
     height: 350px;
     font-size: 24px;
+  }
+
+  /* Large screens (lg): 1024px */
+  @media (min-width: 1024px) {
+    width: 550px;
   }
 
   /* Extra large screens (xl): 1280px */
@@ -471,4 +475,21 @@ export const scorediv = styled("div")`
   gap: 16px;
   align-items: center;
   width: 100%;
+`;
+
+// Styled component for a progressbar outer div
+export const progressbarouter = styled("div")`
+  width: 100%;
+  height: 16px;
+  background-color: var(--scorecardbg-color);
+  border-radius: 100px;
+  padding: 4px;
+`;
+
+// Styled component for a progressbar inner div
+export const progressbarinner = styled("div")`
+  height: 100%;
+  background-color: #a729f5;
+  border-radius: 100px;
+  transition: width 0.5s ease;
 `;

@@ -12,7 +12,7 @@
                 <titlediv>
                     <!-- Icon for the subject with dynamic background color -->
                     <icondiv :style="{ 'backgroundColor': currentSubject.iconbg }">
-                        <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                        <img style="width: 28px; height:28px; @media (min-width: 768px) {width: 40px; height:40px;}"
                             :src="getImageUrl(currentSubject.icon)" alt="subject-icon">
                     </icondiv>
                     <!-- Text displaying current subject title -->
@@ -30,6 +30,10 @@
                     </headercontainerp>
                     <!-- Question text fetched dynamically -->
                     <question>{{ currentSubject.questions[currentQuestionIndex].question }}</question>
+                    <!-- Progress bar -->
+                    <progressbarouter>
+                        <progressbarinner :style="{ width: progressPercentage + '%' }"></progressbarinner>
+                    </progressbarouter>
                 </headercontainer>
 
                 <!-- Container for displaying options -->
@@ -56,11 +60,11 @@
                             <!-- Container for correct or incorrect icons -->
                             <div style="display: flex; margin-left: auto;">
                                 <icondiv v-if="isOptionCorrect(option)" style="background-color: transparent;">
-                                    <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                                    <img style="width: 28px; height:28px; @media (min-width: 768px) {width: 40px; height:40px;}"
                                         :src="getImageUrl('icon-correct.svg')" alt="">
                                 </icondiv>
                                 <icondiv v-if="isOptionIncorrect(option)" style="background-color: transparent;">
-                                    <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                                    <img style="width: 28px; height:28px; @media (min-width: 768px) {width: 40px; height:40px;}"
                                         :src="getImageUrl('icon-incorrect.svg')" alt="">
                                 </icondiv>
                             </div>
@@ -73,7 +77,7 @@
                     <styledbutton v-show="showScoreBtn" @click="showQuizScore">Show score</styledbutton>
                     <!-- Error message display -->
                     <errormessage v-show="error">
-                        <img style="width: 32px; height:32px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                        <img style="width: 28px; height:28px; @media (min-width: 768px) {width: 40px; height:40px;}"
                             :src="getImageUrl('icon-incorrect.svg')" alt="error-icon">
                         {{ errorMsg }}
                     </errormessage>
@@ -95,7 +99,8 @@
                         <titlediv>
                             <!-- Icon for the subject with dynamic background color -->
                             <icondiv :style="{ 'backgroundColor': currentSubject.iconbg }">
-                                <img style="width: 40px; height:40px" :src="getImageUrl(currentSubject.icon)" alt="">
+                                <img style="width:28px; height:28px; @media (min-width: 768px) {width: 40px; height:40px;}"
+                                    :src="getImageUrl(currentSubject.icon)" alt="">
                             </icondiv>
                             <!-- Text displaying subject title -->
                             <cardtext>{{ currentSubject.title }}</cardtext>
@@ -135,7 +140,7 @@
 import { useQuizStore } from '../stores/quizstore';
 // Import styled components for styling
 import {
-    outercontainer, innercontainer, card, icondiv, cardcontainer, screen, cardtext, headercontainer, headercontainerspan, headercontainerh1, headercontainerp, outertopcircle, outerbottomcircle, innercircle, titletogglecontainer, titlediv, question, styledbutton, errormessage, scorecard, score, scorediv
+    outercontainer, innercontainer, card, icondiv, cardcontainer, screen, cardtext, headercontainer, headercontainerspan, headercontainerh1, headercontainerp, outertopcircle, outerbottomcircle, innercircle, titletogglecontainer, titlediv, question, styledbutton, errormessage, scorecard, score, scorediv, progressbarouter, progressbarinner
 } from '@/styled-components/styled-components';
 // Import Toggle component for theme switching
 import Toggle from '@/components/Toggle.vue'
@@ -146,7 +151,7 @@ export default {
 
     // Registering components used in this template
     components: {
-        Toggle, outercontainer, innercontainer, card, icondiv, cardcontainer, screen, cardtext, headercontainer, headercontainerspan, headercontainerh1, headercontainerp, outertopcircle, outerbottomcircle, innercircle, titletogglecontainer, titlediv, question, styledbutton, errormessage, scorecard, score, scorediv
+        Toggle, outercontainer, innercontainer, card, icondiv, cardcontainer, screen, cardtext, headercontainer, headercontainerspan, headercontainerh1, headercontainerp, outertopcircle, outerbottomcircle, innercircle, titletogglecontainer, titlediv, question, styledbutton, errormessage, scorecard, score, scorediv, progressbarouter, progressbarinner
     },
 
     // Data initialization
@@ -165,7 +170,7 @@ export default {
             showIncorrectIcons: false,  // Controls the display of incorrect answer icons
             isSubmitted: false, // Flag to track if the answer has been submitted
             score: 0, // Tracks the user's score
-            showScore: true, // Controls the display of the quiz & score screen
+            showScore: false, // Controls the display of the quiz & score screen
             theme: ""
 
         }
@@ -179,12 +184,11 @@ export default {
         if (subject) {
             this.currentSubject = subject; // Set the current subject if found
         }
-
+        
         this.theme = quizStore.theme
-
         // Watch for changes in the store's theme and update the local theme
-        quizStore.$subscribe((mutation, state) => {
-            this.theme = state.theme;
+        this.$watch(() => quizStore.theme, (newTheme) => {
+            this.theme = newTheme;
         });
     },
 
@@ -307,6 +311,11 @@ export default {
                 backgroundColor: '#F6E7FF',
             };
         },
+
+        // Calculate progress percentage
+        progressPercentage() {
+            return ((this.currentQuestionIndex + 1) / this.currentSubject.questions.length) * 100;
+        }
 
     },
 }
