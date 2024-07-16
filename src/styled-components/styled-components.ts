@@ -11,6 +11,31 @@ export const screen = styled("div")`
   background-color: #f4f6fa;
   font-family:"Rubik";
   overflow:hidden;
+
+    /* Small screens (sm): 640px */
+   @media (min-width: 640px) {
+    
+  }
+
+  /* Medium screens (md): 768px */
+  @media (min-width: 768px) {
+    
+  }
+
+  /* Large screens (lg): 1024px */
+  @media (min-width: 1024px) {
+    
+  }
+
+  /* Extra large screens (xl): 1280px */
+  @media (min-width: 1280px) {
+    
+  }
+
+  /* 2 Extra large screens (2xl): 1536px */
+  @media (min-width: 1536px) {
+    
+  }
 `;
 
 // Styled component for the large top outer circle background
@@ -212,6 +237,7 @@ export const scorecard = styled("div")`
   border-radius: 24px;  
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
+
 
 // Styled component for a score text
 export const score = styled("p")`
